@@ -1,0 +1,26 @@
+{
+    "name": "cryptom2/magento-nftloyalty",
+    "version": "v1.0.0",
+    "description": "Magento 2 NFT Loyalty extension that allows to use NFT token as 'Discount Card' for implementing NFT Loyalty Programs.",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Ihor Oleksiienko",
+            "homepage": "https://github.com/torys877",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "cryptom2/base": "~1.0.0",
+        "web3p/web3.php": "~1.0.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Crypto\\NftLoyalty\\": ""
+        }
+    }
+}

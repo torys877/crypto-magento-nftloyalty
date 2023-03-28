@@ -1,0 +1,42 @@
+{
+    "cryptom2_nft_loyalty": {
+        "column": {
+            "entity_id": true,
+            "nft_address": true,
+            "nft_name": true,
+            "nft_symbol": true
+        },
+        "index": {
+            "NFT_ADDRESS_INDEX": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "cryptom2_nft_loyalty_quote_data": {
+        "column": {
+            "entity_id": true,
+            "nft_id": true,
+            "quote_id": true,
+            "balance_of": true
+        },
+        "index": {
+            "NFT_QUOTE_INDEX": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "NFT_IDX_QUOTE_ENTITY_QUOTE_ID": true,
+            "NFT_IDX_NFT_ENTITY_NFT_ID": true
+        }
+    },
+    "quote": {
+        "column": {
+            "customer_evm_address": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "customer_evm_address": true
+        }
+    }
+}

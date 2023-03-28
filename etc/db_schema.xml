@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cryptom2_nft_loyalty" resource="default" engine="innodb" comment="NFT Loyalty Items Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="varchar" name="nft_name" length="255" nullable="false" comment="Nft Name"/>
+        <column xsi:type="varchar" name="nft_symbol" length="255" nullable="false" comment="Nft Symbol"/>
+        <column xsi:type="varchar" name="nft_address" length="255" nullable="false" comment="Nft Address"/>
+        <column xsi:type="text" name="nft_contract_abi" nullable="false" comment="Nft Contract Abi"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="NFT_ADDRESS_INDEX" indexType="btree">
+            <column name="nft_address"/>
+        </index>
+    </table>
+    <table name="cryptom2_nft_loyalty_quote_data" resource="default" engine="innodb" comment="NFT Loyalty Items Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="int" name="nft_id" unsigned="true" nullable="false" comment="Nft Id From Loyalty Table"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="false"  comment="Quote Id"/>
+        <column xsi:type="int" name="balance_of" unsigned="true" nullable="true"  comment="Amount Of NFTs"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="NFT_QUOTE_NFT_ID" indexType="btree">
+            <column name="nft_id"/>
+        </index>
+        <index referenceId="NFT_QUOTE_ID" indexType="btree">
+            <column name="quote_id"/>
+        </index>
+
+        <constraint xsi:type="foreign" referenceId="NFT_IDX_QUOTE_ENTITY_QUOTE_ID"
+                    table="cryptom2_nft_loyalty_quote_data" column="quote_id" referenceTable="quote" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="NFT_IDX_NFT_ENTITY_NFT_ID"
+                    table="cryptom2_nft_loyalty_quote_data" column="nft_id" referenceTable="cryptom2_nft_loyalty" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    <table name="quote" resource="checkout" engine="innodb" comment="Sales Flat Quote">
+        <column xsi:type="varchar" name="customer_evm_address" nullable="true" length="255" comment="Customer Address In Blockchain"/>
+    </table>
+    <table name="sales_order" resource="sales" engine="innodb" comment="Sales Flat Order">
+        <column xsi:type="varchar" name="customer_evm_address" nullable="true" length="255" comment="Customer Address In Blockchain"/>
+    </table>
+</schema>

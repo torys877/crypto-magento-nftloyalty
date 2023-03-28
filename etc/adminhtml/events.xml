@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="salesrule_rule_condition_combine">
+        <observer name="Crypto_NftLoyalty::add_new_nft_condition_handle" instance="Crypto\NftLoyalty\Observer\Admin\AddNewConditionHandle" />
+    </event>
+</config>

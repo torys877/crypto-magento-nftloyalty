@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Crypto\NftLoyalty\Api\Data\NftInterface"
+                type="Crypto\NftLoyalty\Model\Data\Nft"/>
+
+    <preference for="Crypto\NftLoyalty\Api\NftRepositoryInterface"
+                type="Crypto\NftLoyalty\Model\NftRepository"/>
+
+    <preference for="Crypto\NftLoyalty\Api\NftManagementInterface" type="Crypto\NftLoyalty\Model\Nft\NftManagement" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="nft_listing_data_source" xsi:type="string">
+                    Crypto\NftLoyalty\Model\ResourceModel\Nft\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Crypto\NftLoyalty\Model\ResourceModel\Nft\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">cryptom2_nft_loyalty</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="check_nft_balance" xsi:type="object">Crypto\NftLoyalty\Console\Command\CheckNftLoyaltyBalance</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

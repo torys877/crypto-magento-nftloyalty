@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+
+<div class="payment-option _collapsible opc-payment-additional discount-code"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+            <!-- ko i18n: 'Apply NFT'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <form class="form form-discount" id="nft-form">
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <!-- ko if: !isNftApplied() && isWalletConnected() -->
+                        <button class="action action-apply" type="submit" data-bind="'value': $t('Apply NFT'), click: apply">
+                            <span><!-- ko i18n: 'Apply NFT'--><!-- /ko --></span>
+                        </button>
+                    <!-- /ko -->
+                    <!-- ko if: !isWalletConnected() -->
+                    <button class="action action-apply" type="submit" data-bind="'value': $t('Connect Wallet'), click: connectWallet">
+                        <span><!-- ko i18n: 'Connect Wallet'--><!-- /ko --></span>
+                    </button>
+                    <!-- /ko -->
+                    <!-- ko if: isNftApplied() && isWalletConnected() -->
+                        <span><!-- ko i18n: 'NFT is applied'--><!-- /ko --></span>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

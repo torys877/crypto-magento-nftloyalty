@@ -1,0 +1,53 @@
+<?php
+/*
+ * Copyright © Ihor Oleksiienko (https://github.com/torys877)
+ * See LICENSE for license details.
+ */
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/**
+ * @var \Crypto\NftLoyalty\Block\Cart\Nft $block
+ */
+
+// We should use strlen function because coupon code could be "0", converted to bool will lead to false
+$nftApplied = $block->isNftApplied();
+
+if (!$block->isEnabled()) {
+    return '';
+}
+
+?>
+<div class="block nft"
+     id="block-nft"
+     data-mage-init='{"collapsible":{"active": <?= $nftApplied ? 'true' : 'false' ?>, "openedState": "active", "saveState": false}}'>
+    <div class="title" data-role="title">
+        <strong id="block-discount-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Apply Nft For Discount')) ?></strong>
+    </div>
+    <div data-bind="scope: 'web3nftscope'" class="content" data-role="content" aria-labelledby="block-nft-heading">
+        <div class="message" style="display: none"></div>
+        <button id="connect_wallet_button" type="submit" style="display: none" title="<?=__('Connect Wallet')?>" class="action primary" data-bind="click: connectWallet, visible: !isWalletConnected() && !isNftApplied()">
+            <span><?=__('Connect Wallet')?></span>
+        </button>
+        <button id="apply_nft" type="submit" style="display: none" title="<?=__('Pay by Eth')?>" class="action primary" data-bind="click: applyNft, visible: isWalletConnected() && !isNftApplied()">
+            <span><?=__('Apply NFT')?></span>
+        </button>
+    </div>
+
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                        "web3nftscope": {
+                            "component": "Crypto_NftLoyalty/js/cart/web3component",
+                            "quote_id": "<?= /* @noEscape */ $block->getQuote()->getId() ?>",
+                            "apply_nft_url": "<?= /* @noEscape */ $block->getApplyNftUrl() ?>",
+                            "is_nft_applied": "<?= /* @noEscape */ $nftApplied ?>"
+                        }
+                    }
+                }
+            }
+    }
+    </script>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Managing Guest Cart Coupons -->
+    <route url="/V1/nft/:cartId/nftapplied" method="GET">
+        <service class="Crypto\NftLoyalty\Api\NftManagementInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/nft/:cartId/customerWallet/:customerAddress" method="PUT">
+        <service class="Crypto\NftLoyalty\Api\NftManagementInterface" method="apply"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Crypto_NftLoyalty::nft_loyalty"
+             title="NFT Loyalty"
+             module="Crypto_NftLoyalty"
+             sortOrder="700"
+             resource="Crypto_NftLoyalty::nft_loyalty"
+             parent="Magento_Backend::marketing"
+        />
+
+        <add id="Crypto_NftLoyalty::nft_items"
+             title="NFT's"
+             module="Crypto_NftLoyalty"
+             action="cryptonft/nft"
+             sortOrder="10"
+             resource="Crypto_NftLoyalty::nft_items"
+             parent="Crypto_NftLoyalty::nft_loyalty"/>
+    </menu>
+</config>

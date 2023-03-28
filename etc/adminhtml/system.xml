@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="crypto" translate="label" sortOrder="301">
+            <label>Crypto M2</label>
+        </tab>
+        <section id="cryptonftloyalty" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>NFT Loyalty</label>
+            <tab>crypto</tab>
+            <resource>Crypto_NftLoyalty::nft_loyalty</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="rpc_endpoint" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>RPC Endpoint</label>
+                    <comment>E.g.: hardhat: http://127.0.0.1:8545, INFURA: https://mainnet.infura.io/v3/{YOUR_API_KEY}</comment>
+                </field>
+                <field id="nft_smart_contract_abi" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>NFT Smart Contract ABI</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

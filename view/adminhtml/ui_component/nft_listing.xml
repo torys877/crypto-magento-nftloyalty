@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">nft_listing.nft_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New NFT</label>
+            </button>
+        </buttons>
+        <spinner>nft_columns</spinner>
+        <deps>
+            <dep>nft_listing.nft_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="nft_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="nft_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="nft_columns">
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="nft_name" sortOrder="10">
+            <settings>
+                <label translate="true">Nft Name</label>
+                <sorting>asc</sorting>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="nft_address" sortOrder="20">
+            <settings>
+                <label translate="true">Nft Address</label>
+                <sorting>asc</sorting>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Crypto\NftLoyalty\Ui\Component\Listing\Column\Actions" sortOrder="100"/>
+    </columns>
+</listing>
